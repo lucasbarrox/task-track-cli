@@ -1,5 +1,3 @@
----
-
 ```markdown
 # Task Tracker CLI
 
@@ -275,5 +273,3 @@ This project is licensed under the **MIT License**. See the [LICENSE](LICENSE) f
 
 Feel free to suggest improvements or report issues. Contributions are always welcome! 🚀
 ```
-
----
