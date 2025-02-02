@@ -37,14 +37,14 @@ cd /path/to/your/project
 Then run commands using:
 
 ```bash
-node index.js <command> [arguments]
+node app.js <command> [arguments]
 ```
 
 Alternatively, you can add a shortcut in `package.json` for easier execution:
 
 ```json
 "scripts": {
-  "start": "node index.js"
+  "start": "node app.js"
 }
 ```
 
@@ -61,13 +61,13 @@ npm start
 ### 1️⃣ Add a new task
 
 ```bash
-node index.js add "Task description"
+node app.js add "Task description"
 ```
 
 Example:
 
 ```bash
-node index.js add "Buy groceries"
+node app.js add "Buy groceries"
 ```
 
 📌 **Output:**
@@ -80,7 +80,7 @@ Task added successfully (ID: 1)
 ### 2️⃣ List all tasks
 
 ```bash
-node index.js list
+node app.js list
 ```
 
 📌 **Example Output:**
@@ -96,17 +96,17 @@ Tasks:
 
 - **Completed tasks:**
   ```bash
-  node index.js list done
+  node app.js list done
   ```
 
 - **Pending tasks:**
   ```bash
-  node index.js list todo
+  node app.js list todo
   ```
 
 - **In-progress tasks:**
   ```bash
-  node index.js list in-progress
+  node app.js list in-progress
   ```
 
 ---
@@ -116,13 +116,13 @@ Tasks:
 Modify the description of an existing task.
 
 ```bash
-node index.js update <ID> "New task description"
+node app.js update <ID> "New task description"
 ```
 
 Example:
 
 ```bash
-node index.js update 1 "Buy groceries and cook dinner"
+node app.js update 1 "Buy groceries and cook dinner"
 ```
 
 📌 **Output:**
@@ -135,13 +135,13 @@ Task 1 updated successfully.
 ### 5️⃣ Mark a task as "in progress"
 
 ```bash
-node index.js mark-in-progress <ID>
+node app.js mark-in-progress <ID>
 ```
 
 Example:
 
 ```bash
-node index.js mark-in-progress 1
+node app.js mark-in-progress 1
 ```
 
 📌 **Output:**
@@ -154,13 +154,13 @@ Task 1 marked as in-progress.
 ### 6️⃣ Mark a task as "done"
 
 ```bash
-node index.js mark-done <ID>
+node app.js mark-done <ID>
 ```
 
 Example:
 
 ```bash
-node index.js mark-done 1
+node app.js mark-done 1
 ```
 
 📌 **Output:**
@@ -173,13 +173,13 @@ Task 1 marked as done.
 ### 7️⃣ Delete a task
 
 ```bash
-node index.js delete <ID>
+node app.js delete <ID>
 ```
 
 Example:
 
 ```bash
-node index.js delete 1
+node app.js delete 1
 ```
 
 📌 **Output:**
@@ -264,7 +264,7 @@ This project is licensed under the **MIT License**. See the [LICENSE](LICENSE) f
 3. Run the CLI:
 
    ```bash
-   node index.js
+   node app.js
    ```
 
 ---
