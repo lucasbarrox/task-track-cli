@@ -104,12 +104,12 @@ function deleteTask(taskId){
 
 function printUsage() {
     console.log("\nUsage:");
-    console.log('  node index.js add "Task description"             -> Add a new task');
-    console.log("  node index.js list                               -> List all tasks");
-    console.log("  node index.js list done                          -> List tasks with status 'done'");
-    console.log("  node index.js update <ID> \"New description\"      -> Update a task");
-    console.log("  node index.js mark-in-progress <ID>              -> Mark a task as in progress");
-    console.log("  node index.js mark-done <ID>                     -> Mark a task as done");
+    console.log('  node app.js add "Task description"             -> Add a new task');
+    console.log("  node app.js list                               -> List all tasks");
+    console.log("  node app.js list done                          -> List tasks with status 'done'");
+    console.log("  node app.js update <ID> \"New description\"      -> Update a task");
+    console.log("  node app.js mark-in-progress <ID>              -> Mark a task as in progress");
+    console.log("  node app.js mark-done <ID>                     -> Mark a task as done");
 }
 
 function main() {
