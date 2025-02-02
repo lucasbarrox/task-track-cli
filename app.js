@@ -21,6 +21,11 @@ function saveTasks(tasks) {
 }
 
 function addTask(description) {
+    if(!description.trim()){
+        console.log("Error: Task description cannot be empty.");
+        return;
+    }
+
     const tasks = loadTasks();
     const taskId = tasks.length > 0 ? tasks[tasks.length - 1].id + 1 : 1;
 
