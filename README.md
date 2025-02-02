@@ -1,4 +1,3 @@
-```markdown
 # Task Tracker CLI
 
 Task Tracker CLI is a simple command-line tool to **manage and track tasks** efficiently. It allows you to **add, update, delete**, and **mark tasks as in progress or done**. Tasks are stored in a JSON file, ensuring easy data persistence.
@@ -22,7 +21,6 @@ Ensure you have **[Node.js](https://nodejs.org/)** installed. You can check by r
 
 ```bash
 node -v
-```
 
 If Node.js is not installed, download and install it from the [official website](https://nodejs.org/).
 
@@ -272,4 +270,3 @@ This project is licensed under the **MIT License**. See the [LICENSE](LICENSE) f
 ---
 
 Feel free to suggest improvements or report issues. Contributions are always welcome! 🚀
-```
