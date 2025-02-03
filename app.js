@@ -180,6 +180,18 @@ function main() {
             }
             deleteTask(deleteTaskId);
             break;
+        case "clear":
+            console.log("Are you sure you want to delete all tasks? (yes/no)");
+            process.stdin.once("data", (input) => {
+                if(input.toString().trim().toLocaleLowerCase() === "yes"){
+                    saveTasks([]);
+                    console.log("All tasks have been deleted.");
+                } else{
+                    console.log("Operation canceled.");
+                }
+                process.exit();
+            });
+            break;
         default:
             console.log(`Error: Unknown command '${command}'`);
             printUsage();
