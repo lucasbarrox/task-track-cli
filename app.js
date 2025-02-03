@@ -51,11 +51,19 @@ function listTasks(status = null) {
         return;
     }
 
-    console.log(`\nTasks${status ? ` with status '${status}'` : ""}:`);
+    console.log(`\nTasks${status ? ` with status '${status}'` : ""}:\n`);
+    console.log("ID  | Description                  | Status       | Created At");
+    console.log("----|------------------------------|--------------|----------------------");
+
     filteredTasks.forEach(task => {
-        console.log(`[${task.id}] ${task.description} - Status: ${task.status}`);
+        console.log(
+            `${task.id.toString().padEnd(3)} | ${task.description.padEnd(28)} | ${task.status.padEnd(11)}  | ${new Date(task.createdAt).toLocaleString()}`
+        );
     });
+
+    console.log("\n");
 }
+
 
 function updateTask(taskId, newDescription) {
     const tasks = loadTasks();
