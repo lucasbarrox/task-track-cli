@@ -1,3 +1,4 @@
+#!/usr/bin/env node
 const fs = require("fs");
 const path = require("path");
 
@@ -20,7 +21,7 @@ function saveTasks(tasks) {
     fs.writeFileSync(TASK_FILES, JSON.stringify(tasks, null, 4), "utf-8");
 }
 
-function addTask(description) {
+function addTask(description, dueDate = null) {
     if(!description.trim()){
         console.log("Error: Task description cannot be empty.");
         return;
@@ -35,6 +36,7 @@ function addTask(description) {
         status: "todo",
         createdAt: new Date().toISOString(),
         updatedAt: new Date().toISOString(),
+        dueDate: dueDate ? new Date(dueDate).toISOString() : null,
     };
 
     tasks.push(newTask);
