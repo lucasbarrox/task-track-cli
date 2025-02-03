@@ -44,6 +44,21 @@ function addTask(description, dueDate = null) {
     console.log(`Task added successfully (ID: ${taskId})`);
 }
 
+const chalk = require("chalk");
+
+function getStatusIcon(status){
+    switch(status){
+        case "todo":
+            return chalk.yellow("🟡 To Do");
+        case "in-progress":
+            return chalk.blue("🔵 In Progress");
+        case "done":
+            return chalk.green("✅ Done");
+        default:
+            return status;
+    }
+}
+
 function listTasks(status = null) {
     const tasks = loadTasks();
     const filteredTasks = status ? tasks.filter(task => task.status === status) : tasks;
