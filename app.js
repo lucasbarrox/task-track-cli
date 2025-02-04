@@ -118,6 +118,12 @@ function listTasks(filterStatus = null) {
 }
 
 function updateTask(taskId, newDescription) {
+
+    if(isNaN(taskId) || taskId <= 0){
+        console.log("Error: Task ID must be a positive integer.");
+        return;
+    }
+
     const tasks = loadTasks();
     const task = tasks.find(task => task.id === taskId);
 
