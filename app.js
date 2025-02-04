@@ -46,40 +46,54 @@ function addTask(description, dueDate = null) {
 
 const chalk = require("chalk");
 
-function getStatusIcon(status){
-    switch(status){
+function getStatusIcon(status) {
+    switch(status) {
         case "todo":
-            return chalk.yellow("🟡 To Do");
+            return chalk.yellow.bold("🟡 To Do          "); // 10 caracteres
         case "in-progress":
-            return chalk.blue("🔵 In Progress");
+            return chalk.blue.bold("🔵 In Progress     "); // 13 caracteres
         case "done":
-            return chalk.green("✅ Done");
+            return chalk.green.bold("✅ Done            "); // 10 caracteres
         default:
-            return status;
+            return chalk.gray(status.padEnd(13)); // Padroniza tamanho
     }
 }
 
-function listTasks(status = null) {
-    const tasks = loadTasks();
-    const filteredTasks = status ? tasks.filter(task => task.status === status) : tasks;
 
-    if (filteredTasks.length === 0) {
-        console.log(`No tasks found${status ? ` with status '${status}'` : ""}.`);
+function listTasks() {
+    const tasks = loadTasks();
+    if (tasks.length === 0) {
+        console.log(chalk.yellow("No tasks found."));
         return;
     }
 
-    console.log(`\nTasks${status ? ` with status '${status}'` : ""}:\n`);
-    console.log("ID  | Description                  | Status       | Created At");
-    console.log("----|------------------------------|--------------|----------------------");
+    console.log(chalk.bold("ID".padEnd(5) + "| " + 
+                           "Description".padEnd(31) + "| " + 
+                           "Status".padEnd(20) + "| " + 
+                           "Due Date".padEnd(13) + "| " + 
+                           "Created At"));
+    console.log("-".repeat(90));
 
-    filteredTasks.forEach(task => {
+    tasks.forEach(task => {
         console.log(
-            `${task.id.toString().padEnd(3)} | ${task.description.padEnd(28)} | ${getStatusIcon(task.status).padEnd(15)} | ${task.dueDate ? new Date(task.dueDate).toLocaleDateString() : 'N/A'.padEnd(10)} | ${new Date(task.createdAt).toLocaleString()}`
-          );
+            String(task.id).padEnd(4) + " | " +
+            task.description.padEnd(30) + " | " +
+            getStatusIcon(task.status).padEnd(20) + " | " +
+            (task.dueDate ? new Date(task.dueDate).toLocaleDateString("pt-BR") : "N/A").padEnd(12) + " | " +
+            new Date(task.createdAt).toLocaleString("pt-BR", {
+                year: "2-digit",
+                month: "2-digit",
+                day: "2-digit",
+                hour: "2-digit",
+                minute: "2-digit",
+                hour12: false
+            }).replace(",", " -")
+        );
     });
-
-    console.log("\n");
+    
 }
+
+
 
 
 
