@@ -30,6 +30,19 @@ function addTask(description, dueDate = null) {
         console.log("Error: Task description needs at least 5 caracteres")
     }
 
+    if(dueDate){
+        const currentDate = new Date();
+        const inputDate = new Date(dueDate);
+        if(isNaN(inputDate.getTime())){
+            console.log("Error: Given due data is invalid.");
+            return;
+        }
+        if(inputDate <= currentDate){
+            console.log("Error: The due date must be a future date.");
+            return;
+        }
+    }
+
     const tasks = loadTasks();
     const taskId = tasks.length > 0 ? tasks[tasks.length - 1].id + 1 : 1;
 
