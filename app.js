@@ -2,7 +2,7 @@
 const fs = require("fs");
 const path = require("path");
 
-const TASK_FILES = path.join(require("os").homedir(), "task-tracker.json");
+const TASK_FILES = path.join(process.cwd(), "task-tracker.json");
 
 function loadTasks() {
     if (!fs.existsSync(TASK_FILES)) {
