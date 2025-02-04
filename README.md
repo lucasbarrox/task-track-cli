@@ -1,15 +1,20 @@
+---
+
 # Task Tracker CLI
 
-Task Tracker CLI is a simple command-line tool to **manage and track tasks** efficiently. It allows you to **add, update, delete**, and **mark tasks as in progress or done**. Tasks are stored in a JSON file, ensuring easy data persistence.
+Task Tracker CLI is a simple command-line tool to **manage and track your tasks** efficiently. It lets you add, update, delete, and mark tasks as *in progress* or *done*. All tasks are stored in a local JSON file (located in your home directory), ensuring your data remains persistent.
+
+---
 
 ## 🚀 Features
 
 - **Add tasks** with a description.
-- **List tasks** (all or filtered by status).
-- **Update tasks** to modify their descriptions.
-- **Delete tasks** from the list.
-- **Mark tasks as "in progress" or "done".**
-- **Local JSON storage** for task persistence.
+- **List tasks** in a formatted table.
+- **Update tasks** to change descriptions.
+- **Mark tasks** as "in progress" or "done".
+- **Delete individual tasks.**
+- **Clear all tasks** after confirmation.
+- **Local JSON storage** in `task-tracker.json` (stored in your home directory).
 
 ---
 
@@ -17,227 +22,241 @@ Task Tracker CLI is a simple command-line tool to **manage and track tasks** eff
 
 ### Prerequisites
 
-Ensure you have **[Node.js](https://nodejs.org/)** installed. You can check by running:
+Make sure you have [Node.js](https://nodejs.org/) installed. Verify by running:
 
 ```bash
 node -v
+```
 
-If Node.js is not installed, download and install it from the [official website](https://nodejs.org/).
-
----
+If Node.js isn’t installed, download it from the [official website](https://nodejs.org/).
 
 ### Running the CLI
 
-To use the Task Tracker CLI, open a terminal and navigate to the project directory:
+1. Open your terminal and navigate to the project directory:
 
-```bash
-cd /path/to/your/project
-```
+   ```bash
+   cd /path/to/your/project
+   ```
 
-Then run commands using:
+2. Execute commands using:
 
-```bash
-node app.js <command> [arguments]
-```
+   ```bash
+   task-cli <command> [arguments]
+   ```
 
-Alternatively, you can add a shortcut in `package.json` for easier execution:
+   For convenience, you can add a shortcut in your `package.json`:
 
-```json
-"scripts": {
-  "start": "node app.js"
-}
-```
+   ```json
+   "scripts": {
+     "start": "task-cli"
+   }
+   ```
 
-Now, you can simply run:
+   Then run:
 
-```bash
-npm start
-```
+   ```bash
+   npm start
+   ```
 
 ---
 
 ## 📌 Commands
 
-### 1️⃣ Add a new task
+### 1️⃣ Add a New Task
 
 ```bash
-node app.js add "Task description"
+task-cli add "Task description"
 ```
 
-Example:
+**Example:**
 
 ```bash
-node app.js add "Buy groceries"
+task-cli add "Buy groceries"
 ```
 
-📌 **Output:**
+**Output:**
+
 ```
 Task added successfully (ID: 1)
 ```
 
 ---
 
-### 2️⃣ List all tasks
+### 2️⃣ List All Tasks
 
 ```bash
-node app.js list
+task-cli list
 ```
 
-📌 **Example Output:**
+**Example Output:**
+
 ```
-Tasks:
-[1] Buy groceries - Status: todo
-[2] Learn JavaScript - Status: in-progress
+ID   | Description                   | Status               | Due Date     | Created At
+------------------------------------------------------------------------------------------
+1    | Buy groceries                 | 🟡 To Do             | N/A          | 01/02/25 - 12:00
+2    | Learn JavaScript              | 🔵 In Progress       | N/A          | 01/02/25 - 12:05
 ```
 
 ---
 
-### 3️⃣ List tasks by status
-
-- **Completed tasks:**
-  ```bash
-  node app.js list done
-  ```
-
-- **Pending tasks:**
-  ```bash
-  node app.js list todo
-  ```
-
-- **In-progress tasks:**
-  ```bash
-  node app.js list in-progress
-  ```
-
----
-
-### 4️⃣ Update a task
-
-Modify the description of an existing task.
+### 3️⃣ Update a Task
 
 ```bash
-node app.js update <ID> "New task description"
+task-cli update <ID> "New task description"
 ```
 
-Example:
+**Example:**
 
 ```bash
-node app.js update 1 "Buy groceries and cook dinner"
+task-cli update 1 "Buy groceries and cook dinner"
 ```
 
-📌 **Output:**
+**Output:**
+
 ```
 Task 1 updated successfully.
 ```
 
 ---
 
-### 5️⃣ Mark a task as "in progress"
+### 4️⃣ Mark a Task as "In Progress"
 
 ```bash
-node app.js mark-in-progress <ID>
+task-cli mark-in-progress <ID>
 ```
 
-Example:
+**Example:**
 
 ```bash
-node app.js mark-in-progress 1
+task-cli mark-in-progress 1
 ```
 
-📌 **Output:**
+**Output:**
+
 ```
 Task 1 marked as in-progress.
 ```
 
 ---
 
-### 6️⃣ Mark a task as "done"
+### 5️⃣ Mark a Task as "Done"
 
 ```bash
-node app.js mark-done <ID>
+task-cli mark-done <ID>
 ```
 
-Example:
+**Example:**
 
 ```bash
-node app.js mark-done 1
+task-cli mark-done 1
 ```
 
-📌 **Output:**
+**Output:**
+
 ```
 Task 1 marked as done.
 ```
 
 ---
 
-### 7️⃣ Delete a task
+### 6️⃣ Delete a Task
 
 ```bash
-node app.js delete <ID>
+task-cli delete <ID>
 ```
 
-Example:
+**Example:**
 
 ```bash
-node app.js delete 1
+task-cli delete 1
 ```
 
-📌 **Output:**
+**Output:**
+
 ```
 Task 1 deleted successfully.
 ```
 
 ---
 
+### 7️⃣ Clear All Tasks
+
+This command deletes **all tasks** from your list. For safety, you will be prompted to confirm the action.
+
+```bash
+task-cli clear
+```
+
+**Prompt:**
+
+```
+Are you sure you want to delete all tasks? (yes/no)
+```
+
+Type `yes` to confirm or `no` to cancel.
+
+---
+
 ## 📂 JSON File Structure
 
-The tasks are stored in a `tasks.json` file with the following format:
+Tasks are stored in a file named `task-tracker.json` in your home directory. The file follows this structure:
 
 ```json
 [
-  {
-    "id": 1,
-    "description": "Buy groceries",
-    "status": "todo",
-    "createdAt": "2025-02-01T12:00:00Z",
-    "updatedAt": "2025-02-01T12:00:00Z"
-  },
-  {
-    "id": 2,
-    "description": "Learn JavaScript",
-    "status": "in-progress",
-    "createdAt": "2025-02-01T12:05:00Z",
-    "updatedAt": "2025-02-01T12:10:00Z"
-  }
+    {
+        "id": 1,
+        "description": "Buy groceries",
+        "status": "todo",
+        "createdAt": "2025-02-01T12:00:00Z",
+        "updatedAt": "2025-02-01T12:00:00Z",
+        "dueDate": null
+    },
+    {
+        "id": 2,
+        "description": "Learn JavaScript",
+        "status": "in-progress",
+        "createdAt": "2025-02-01T12:05:00Z",
+        "updatedAt": "2025-02-01T12:10:00Z",
+        "dueDate": null
+    }
 ]
 ```
 
 Each task contains:
 
 - **id:** Unique identifier.
-- **description:** Task details.
-- **status:** `todo`, `in-progress`, or `done`.
+- **description:** Details of the task.
+- **status:** Can be `todo`, `in-progress`, or `done`.
 - **createdAt:** Timestamp when the task was created.
 - **updatedAt:** Timestamp when the task was last updated.
+- **dueDate:** Optional due date (if provided).
 
 ---
 
 ## 🤝 Contributing
 
+Contributions are welcome! To contribute:
+
 1. **Fork the repository** on GitHub.
-2. **Create a new branch** for your feature:  
+2. **Create a new branch**:
+
    ```bash
    git checkout -b feature/new-feature
    ```
-3. **Commit your changes**:  
+
+3. **Commit your changes:**
+
    ```bash
    git commit -am "Add new feature"
    ```
-4. **Push the branch** to GitHub:  
+
+4. **Push your branch:**
+
    ```bash
    git push origin feature/new-feature
    ```
-5. **Submit a pull request**.
+
+5. **Submit a pull request** on GitHub.
 
 ---
 
@@ -264,9 +283,9 @@ This project is licensed under the **MIT License**. See the [LICENSE](LICENSE) f
 3. Run the CLI:
 
    ```bash
-   node app.js
+   task-cli
    ```
 
 ---
 
-Feel free to suggest improvements or report issues. Contributions are always welcome! 🚀
+Feel free to suggest improvements or report issues. Happy tracking! 🚀
