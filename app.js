@@ -44,42 +44,50 @@ function addTask(description, dueDate = null) {
     console.log(`Task added successfully (ID: ${taskId})`);
 }
 
-const chalk = require("chalk");
-
 function getStatusIcon(status) {
     switch(status) {
         case "todo":
-            return chalk.yellow.bold("🟡 To Do          "); // 10 caracteres
+            return "🟡 To Do  ";
         case "in-progress":
-            return chalk.blue.bold("🔵 In Progress     "); // 13 caracteres
+            return "🔵 In Progress  ";
         case "done":
-            return chalk.green.bold("✅ Done            "); // 10 caracteres
+            return "🟢 Done";
         default:
-            return chalk.gray(status.padEnd(13)); // Padroniza tamanho
+            return status;
     }
 }
 
+function listTasks(filterStatus = null) {
+    let tasks = loadTasks();
 
-function listTasks() {
-    const tasks = loadTasks();
+    if(filterStatus){
+        if(filterStatus){
+            if(filterStatus === "not-done"){
+                tasks = tasks.filter(task => task.status !== "done");
+            } else{
+                tasks = tasks.filter(task => task.status === filterStatus);
+            }
+        }
+    }
+
     if (tasks.length === 0) {
-        console.log(chalk.yellow("No tasks found."));
+        console.log("No tasks found.");
         return;
     }
 
-    console.log(chalk.bold("ID".padEnd(5) + "| " + 
-                           "Description".padEnd(31) + "| " + 
-                           "Status".padEnd(20) + "| " + 
-                           "Due Date".padEnd(13) + "| " + 
-                           "Created At"));
+    console.log("ID".padEnd(5) + "| " +
+        "Description".padEnd(26) + "| " +
+        "Status".padEnd(21) + "| " +
+        "Due Date".padEnd(14) + "| " +
+        "Created At");
     console.log("-".repeat(90));
 
     tasks.forEach(task => {
         console.log(
             String(task.id).padEnd(4) + " | " +
-            task.description.padEnd(30) + " | " +
+            task.description.padEnd(25) + " | " +
             getStatusIcon(task.status).padEnd(20) + " | " +
-            (task.dueDate ? new Date(task.dueDate).toLocaleDateString("pt-BR") : "N/A").padEnd(12) + " | " +
+            (task.dueDate ? new Date(task.dueDate).toLocaleDateString("pt-BR") : "N/A").padEnd(13) + " | " +
             new Date(task.createdAt).toLocaleString("pt-BR", {
                 year: "2-digit",
                 month: "2-digit",
@@ -92,10 +100,6 @@ function listTasks() {
     });
     
 }
-
-
-
-
 
 function updateTask(taskId, newDescription) {
     const tasks = loadTasks();
