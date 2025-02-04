@@ -268,4 +268,4 @@ if (require.main === module) {
     main();
 }
 
-module.exports = { loadTasks };
+module.exports = { loadTasks, addTask };
