@@ -74,12 +74,13 @@ function listTasks(status = null) {
 
     filteredTasks.forEach(task => {
         console.log(
-            `${task.id.toString().padEnd(3)} | ${task.description.padEnd(28)} | ${task.status.padEnd(11)}  | ${new Date(task.createdAt).toLocaleString()}`
-        );
+            `${task.id.toString().padEnd(3)} | ${task.description.padEnd(28)} | ${getStatusIcon(task.status).padEnd(15)} | ${task.dueDate ? new Date(task.dueDate).toLocaleDateString() : 'N/A'.padEnd(10)} | ${new Date(task.createdAt).toLocaleString()}`
+          );
     });
 
     console.log("\n");
 }
+
 
 
 function updateTask(taskId, newDescription) {
