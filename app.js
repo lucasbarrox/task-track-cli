@@ -26,6 +26,9 @@ function addTask(description, dueDate = null) {
         console.log("Error: Task description cannot be empty.");
         return;
     }
+    if(description.length < 5){
+        console.log("Error: Task description needs at least 5 caracteres")
+    }
 
     const tasks = loadTasks();
     const taskId = tasks.length > 0 ? tasks[tasks.length - 1].id + 1 : 1;
