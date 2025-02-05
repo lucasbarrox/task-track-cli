@@ -289,3 +289,7 @@ This project is licensed under the **MIT License**. See the [LICENSE](LICENSE) f
 ---
 
 Feel free to suggest improvements or report issues. Happy tracking! 🚀
+
+---
+
+I got the idea for the app from https://roadmap.sh/projects/task-tracker
